@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>С Днём Рождения, Папа!</title>
+
+  <!-- Стили -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- ====================== ЭКРАН С КНОПКОЙ ====================== -->
+  <div id="intro-screen" class="screen active">
+    <div class="intro-content">
+      <h1>Готов к сюрпризу?</h1>
+      <button id="start-btn">Нажми меня!</button>
+    </div>
+  </div>
+
+  <!-- ====================== ОТКРЫТКА ====================== -->
+  <div id="card-screen" class="screen">
+    <div class="card">
+      <div class="card-inner">
+
+        <!-- Лицевая сторона -->
+        <div class="card-front">
+          <h2>С Днём Рождения,</h2>
+          <h1>Папа!</h1>
+          <p class="subtitle">Ты — лучший в мире!</p>
+        </div>
+
+        <!-- Обратная сторона -->
+        <div class="card-back">
+          <!-- Фото -->
+          <div class="photo-container">
+            <img src="photo.jpg" alt="Папа в детстве" class="papa-photo" />
+          </div>
+
+          <!-- Поздравление -->
+          <p class="message">
+            Дорогой папа!<br><br>
+            Мы поздравляем тебя С Днём Рождения!!!<br>
+            Спасибо тебе огромное за все, что ты делаешь для нас!<br><br>
+            Мы безумно гордимся тобой!<br>
+            Желаем здоровья, счастья и всего-всего-всего!<br><br>
+<!-- Обёртка для центрирования подписи -->
+  <div style="text-align: center; margin-top: 1rem;">
+    <span class="signature">❤️ С любовью, твоя семья ❤️</span>
+  </div>
+          </p>
+
+          <!-- Сердечки -->
+          <div class="hearts"></div>
+        </div>
+
+      </div>
+    </div>
+
+  <!-- ====================== МУЗЫКА ====================== -->
+    <div class="music-control">
+      <button id="music-btn">
+        <i class="fas fa-play"></i>
+      </button>
+      <span>Музыка</span>
+    </div>
+
+    <!-- АУДИО — ТВОЙ ФАЙЛ music.mp3 -->
+    <audio id="bg-music" loop>
+      <source src="music.mp3" type="audio/mpeg">
+      Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <!-- Конфетти -->
+    <canvas id="confetti-canvas"></canvas>
+  </div>
+
+  <!-- ====================== СКРИПТЫ ====================== -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

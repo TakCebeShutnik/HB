@@ -1,0 +1,331 @@
+/**
+ * Поздравительный сайт для папы
+ * С 3D-открыткой, звёздами, конфетти и музыкой
+ * ===============================================
+ */
+
+/* ====================== СБРОС И ОСНОВА ====================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  transition: background 1s ease;
+}
+
+/* ====================== ЭКРАНЫ ====================== */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ====================== ИНТРО ЭКРАН ====================== */
+#intro-screen {
+  background: radial-gradient(circle at center, #ff6b6b, #ee5a52);
+  flex-direction: column;
+  text-align: center;
+}
+
+.intro-content h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+#start-btn {
+  font-size: 1.8rem;
+  padding: 1rem 3rem;
+  background: #fff;
+  color: #ee5a52;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: bounce 2s infinite;
+}
+
+#start-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* ====================== АНИМАЦИИ ====================== */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-15px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50%      { opacity: 1; transform: scale(1.2); }
+}
+
+/* ====================== ОТКРЫТКА ====================== */
+.card {
+  perspective: 1000px;
+  width: 380px;
+  height: 500px;
+  z-index: 5;
+  position: relative;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Лицевая сторона */
+.card-front {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #d63031;
+}
+
+/* Обратная сторона */
+.card-back {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  color: #2d3436;
+  transform: rotateY(180deg);
+}
+
+/* Заголовки */
+.card h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  margin: 0.5rem 0;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+/* Текст сообщения */
+.message {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 90%;
+  /* Контур добавлен в отдельном блоке ниже */
+}
+
+/* Сердечки */
+.hearts {
+  margin-top: 1.5rem;
+}
+
+.hearts::before,
+.hearts::after {
+  content: '❤️';
+  font-size: 1.8rem;
+  display: inline-block;
+  animation: float 3s infinite ease-in-out;
+}
+
+.hearts::after {
+  animation-delay: 1.5s;
+  margin-left: 10px;
+}
+
+/* ====================== ФОТО ====================== */
+.photo-container {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.papa-photo {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 6px solid #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+}
+
+.papa-photo:hover {
+  transform: scale(1.05);
+}
+
+/* ====================== МУЗЫКА ====================== */
+.music-control {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 10px 16px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.music-control:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+#music-btn {
+  background: #fff;
+  color: #e74c3c;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#music-btn:hover {
+  transform: scale(1.1);
+}
+
+#music-btn.playing i::before {
+  content: "\f28b"; /* Иконка паузы */
+}
+
+/* ====================== КОНФЕТТИ ====================== */
+#confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ====================== ЗВЁЗДЫ ====================== */
+.stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 8px #fff;
+  animation: twinkle linear infinite;
+}
+
+/* ====================== ПОДПИСЬ И КОНТУР ТЕКСТА ====================== */
+.message,
+.signature {
+  /* Чёткий белый контур (8 направлений) */
+  text-shadow:
+    -1px -1px 0 #fff,
+     1px -1px 0 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff,
+    -1px   0  0 #fff,
+     1px   0  0 #fff,
+      0  -1px 0 #fff,
+      0   1px 0 #fff;
+
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.signature {
+  display: block;
+  margin-top: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fffbe6 !important;
+  letter-spacing: 0.5px;
+}
+
+/* ====================== АДАПТИВНОСТЬ ====================== */
+@media (max-width: 480px) {
+  .card {
+    width: 320px;
+    height: 480px;
+  }
+
+  .papa-photo {
+    width: 140px;
+    height: 190px;
+  }
+
+  .music-control {
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+  }
+}
